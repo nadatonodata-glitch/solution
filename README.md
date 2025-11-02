@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyLauncher - App Launcher
 
-## Getting Started
+App Launcher đẹp mắt được xây dựng bằng Next.js, TypeScript và Tailwind CSS.
 
-First, run the development server:
+## Cấu trúc dự án
+
+```
+app-launcher/
+├── app/
+│   ├── layout.tsx          # Root layout với FontAwesome
+│   ├── page.tsx            # Home page
+│   └── globals.css         # Global styles & animations
+├── components/
+│   ├── Header.tsx          # Logo header
+│   ├── AppGrid.tsx         # Grid chứa apps
+│   ├── AppItem.tsx         # Single app item
+│   └── Notification.tsx    # Toast notification
+├── lib/
+│   ├── appData.ts          # Danh sách apps
+│   └── utils.ts            # Helper functions
+├── types/
+│   └── index.ts            # TypeScript interfaces
+└── public/
+    └── icons/              # Custom app icons (SVG/PNG)
+```
+
+## Cài đặt
+
+```bash
+npm install
+```
+
+## Chạy development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Thêm app mới
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Cách 1: Sử dụng FontAwesome icon
 
-## Learn More
+Mở `lib/appData.ts` và thêm:
 
-To learn more about Next.js, take a look at the following resources:
+```typescript
+{
+  id: 'telegram',
+  name: 'Telegram',
+  icon: 'fa-telegram',
+  iconType: 'fontawesome',
+  gradient: 'linear-gradient(135deg, #0088cc, #006699)',
+}
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Cách 2: Sử dụng custom icon
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Thêm file icon vào `public/icons/` (VD: `telegram.svg`)
+2. Mở `lib/appData.ts` và thêm:
 
-## Deploy on Vercel
+```typescript
+{
+  id: 'telegram',
+  name: 'Telegram',
+  icon: '/icons/telegram.svg',
+  iconType: 'custom',
+  gradient: 'linear-gradient(135deg, #0088cc, #006699)',
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tùy chỉnh
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Background gradient**: Chỉnh trong `app/globals.css` → `body` → `background`
+- **Logo**: Chỉnh trong `components/Header.tsx`
+- **Số cột grid**: Chỉnh trong `components/AppGrid.tsx` → `grid-cols-{number}`
+- **Màu gradient app**: Chỉnh thuộc tính `gradient` trong `lib/appData.ts`
+
+## Build production
+
+```bash
+npm run build
+npm start
+```
+
+## Tech Stack
+
+- **Framework**: Next.js 15
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: FontAwesome 6.4.0
+
+## Features
+
+- ✅ Responsive design (mobile, tablet, desktop)
+- ✅ Smooth animations & transitions
+- ✅ Toast notifications
+- ✅ Support FontAwesome & custom icons
+- ✅ Easy to add new apps
+- ✅ Clean component architecture
