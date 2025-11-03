@@ -21,19 +21,20 @@ export const validateQRInput = (type: QRData['type'], content: string): boolean 
   }
 };
 
-// Tạo VCard string từ thông tin
+// Tạo VCard string từ thông tin - ĐÃ SỬA: Dùng VCard 3.0 + UTF-8 để hỗ trợ tiếng Việt
 export const createVCard = (data: {
   fullName: string;
   phone: string;
   email?: string;
   company?: string;
 }): string => {
-  let vcard = 'BEGIN:VCARD\nVERSION:4.0\n';
-  vcard += `FN:${data.fullName}\n`;
-  vcard += `N:${data.fullName};;;;\n`; // Structured name
-  vcard += `TEL;TYPE=cell:${data.phone}\n`;
-  if (data.email) vcard += `EMAIL:${data.email}\n`;
-  if (data.company) vcard += `ORG:${data.company}\n`;
+  let vcard = 'BEGIN:VCARD\n';
+  vcard += 'VERSION:3.0\n'; // Đổi từ 4.0 về 3.0 để tương thích tốt hơn
+  vcard += `FN;CHARSET=UTF-8:${data.fullName}\n`; // Thêm CHARSET=UTF-8
+  vcard += `N;CHARSET=UTF-8:${data.fullName};;;;\n`; // Thêm CHARSET=UTF-8
+  vcard += `TEL;TYPE=CELL:${data.phone}\n`; // Đổi từ 'cell' thành 'CELL'
+  if (data.email) vcard += `EMAIL;TYPE=INTERNET:${data.email}\n`;
+  if (data.company) vcard += `ORG;CHARSET=UTF-8:${data.company}\n`; // Thêm CHARSET=UTF-8
   vcard += 'END:VCARD';
   return vcard;
 };
