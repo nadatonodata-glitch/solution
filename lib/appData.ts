@@ -2,12 +2,12 @@ import { App } from '@/types';
 
 export const apps: App[] = [
   {
-    id: 'qr',
-    name: 'QR Maker',
-    icon: 'fa-qrcode',
-    iconType: 'fontawesome',
-    gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
-    hasPopup: true, // App có popup riêng
+  id: 'qr',
+  name: 'QR Maker',
+  icon: '/icons-app/QRapp.png',
+  iconType: 'custom',
+  gradient: 'linear-gradient(135deg, #667eea, #764ba2)',
+  hasPopup: true,
   },
   {
     id: 'chrome',
