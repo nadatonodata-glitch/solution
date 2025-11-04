@@ -29,3 +29,36 @@ export interface PopupProps {
   onClose: () => void;
   children: React.ReactNode;
 }
+
+// ===== INTERFACES CHO CALL TO DIE =====
+
+export interface Customer {
+  id: string;
+  name: string;
+  phone: string;
+  last_call: string | null;
+  status: 'gọi được' | 'không gọi được' | 'sai số' | null;
+  note: string;
+  created_at: string;
+}
+
+export interface ExcelRow {
+  ID?: string;
+  'Tên': string;
+  'SĐT': string;
+  'Last-call'?: string;
+  'Trạng thái'?: string;
+  'Note'?: string;
+}
+
+export interface ImportResult {
+  valid: Customer[];
+  errors: { row: number; message: string }[];
+}
+
+export interface CallResultPopupProps {
+  isOpen: boolean;
+  customerName: string;
+  onComplete: (status: Customer['status'], note: string) => void;
+  onClose: () => void;
+}
