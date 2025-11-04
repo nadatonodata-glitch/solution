@@ -179,6 +179,10 @@ export default function CallToDiePopup({ onClose }: CallToDiePopupProps) {
 
   // Bắt đầu gọi
   const handleStartCall = (customer: Customer) => {
+    // Kích hoạt gọi điện trên điện thoại
+    window.location.href = `tel:${customer.phone}`;
+    
+    // Mở popup chọn kết quả
     setCurrentCallCustomer(customer);
   };
 

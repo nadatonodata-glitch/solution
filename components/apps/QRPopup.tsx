@@ -244,6 +244,7 @@ export default function QRPopup({ onClose }: QRPopupProps) {
         {/* Page 1: Chọn loại QR */}
         {page === 1 && (
           <div className="space-y-4">
+          {/* 
             <div
               onClick={() => goToPage2('link')}
               className="flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 cursor-pointer hover:scale-105 transition-transform shadow-lg"
@@ -255,7 +256,7 @@ export default function QRPopup({ onClose }: QRPopupProps) {
               </div>
               <div className="text-2xl text-gray-400">→</div>
             </div>
-
+            */}
             <div
               onClick={() => goToPage2('file')}
               className="flex items-center gap-4 p-6 rounded-2xl bg-gradient-to-br from-orange-50 to-orange-100 cursor-pointer hover:scale-105 transition-transform shadow-lg"
