@@ -63,6 +63,7 @@ export default function AppGrid() {
       <PopupOverlay isOpen={isOpen} onClose={closePopup}>
         {currentApp === 'calltoddie' && <CallToDiePopup onClose={closePopup} />}
         {currentApp === 'qr' && <QRPopup onClose={closePopup} />}
+        {currentApp === 'call-to-die' && <CallToDiePopup onClose={closePopup} />}
         {/* Thêm các popup khác ở đây */}
       </PopupOverlay>
     </>
