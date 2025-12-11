@@ -1,4 +1,4 @@
-import { Customer, ExcelRow, ImportResult } from '@/types-calltoddie';
+import { Customer, ExcelRow, ImportResult } from '@/types';
 import * as XLSX from 'xlsx';
 
 // Format phone number: 0901234567 → 090-123-4567
@@ -150,11 +150,7 @@ export const parseExcelFile = async (file: File): Promise<ImportResult> => {
     
     // OK - Add to valid list
     valid.push({
-<<<<<<< HEAD
       id: row['ID']?.toString() || '', // Nếu có ID thì giữ, không thì để trống (sẽ gen UUID)
-=======
-      id: row['ID']?.toString() || crypto.randomUUID(), // Nếu có ID thì giữ, không thì gen UUID
->>>>>>> 3e845aaa4f3e9bb8f3fb89e01a059847981ef7ab
       name: row['Tên'].toString().trim(),
       phone: phone.replace(/\D/g, ''), // Lưu số thuần không có dấu
       last_call: lastCall,
@@ -240,8 +236,4 @@ export const exportCustomersToExcel = (customers: Customer[]): void => {
   
   const timestamp = new Date().toISOString().split('T')[0];
   XLSX.writeFile(workbook, `CallToDie_Export_${timestamp}.xlsx`);
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> 3e845aaa4f3e9bb8f3fb89e01a059847981ef7ab
