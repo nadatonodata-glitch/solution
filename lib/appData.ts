@@ -10,6 +10,14 @@ export const apps: App[] = [
   hasPopup: true,
   },
   {
+    id: 'calltoddie',
+    name: 'CallToDie',
+    icon: '/icons-app/calltoddie.png',
+    iconType: 'custom',
+    gradient: 'linear-gradient(135deg, #f093fb, #f5576c)',
+    hasPopup: true,
+  },
+  {
     id: 'chrome',
     name: 'Chrome',
     icon: 'fa-chrome',

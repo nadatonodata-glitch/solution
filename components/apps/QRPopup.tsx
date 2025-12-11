@@ -143,16 +143,32 @@ export default function QRPopup({ onClose }: QRPopupProps) {
       if (data.hasLogo && logoImage) {
         const img = new Image();
         img.onload = () => {
-          const logoSize = qrSize * 0.15; // Logo chiếm 15% QR
-          const x = (canvas.width - logoSize) / 2;
-          const y = (canvas.height - logoSize) / 2;
+          const maxLogoSize = qrSize * 0.30; // Logo tối đa chiếm 30% QR (tăng từ 20%)
           
-          // Nền trắng cho logo
+          // Tính toán kích thước logo giữ nguyên tỷ lệ
+          let logoWidth, logoHeight;
+          const imgRatio = img.width / img.height;
+          
+          if (imgRatio > 1) {
+            // Logo ngang
+            logoWidth = maxLogoSize;
+            logoHeight = maxLogoSize / imgRatio;
+          } else {
+            // Logo dọc hoặc vuông
+            logoHeight = maxLogoSize;
+            logoWidth = maxLogoSize * imgRatio;
+          }
+          
+          const x = (canvas.width - logoWidth) / 2;
+          const y = (canvas.height - logoHeight) / 2;
+          
+          // Nền trắng cho logo với padding
+          const padding = 8;
           ctx.fillStyle = 'white';
-          ctx.fillRect(x - 5, y - 5, logoSize + 10, logoSize + 10);
+          ctx.fillRect(x - padding, y - padding, logoWidth + padding * 2, logoHeight + padding * 2);
           
-          // Vẽ logo
-          ctx.drawImage(img, x, y, logoSize, logoSize);
+          // Vẽ logo giữ nguyên tỷ lệ
+          ctx.drawImage(img, x, y, logoWidth, logoHeight);
         };
         img.src = logoImage;
       }

@@ -7,6 +7,7 @@ import AppItem from './AppItem';
 import Notification from './Notification';
 import PopupOverlay from './PopupOverlay';
 import QRPopup from './apps/QRPopup';
+import CallToDiePopup from './apps/CallToDiePopup';
 import { usePopup } from '@/hooks/usePopup';
 import { handleAppClick } from '@/lib/utils';
 
@@ -60,6 +61,7 @@ export default function AppGrid() {
 
       {/* Popup Overlay */}
       <PopupOverlay isOpen={isOpen} onClose={closePopup}>
+        {currentApp === 'calltoddie' && <CallToDiePopup onClose={closePopup} />}
         {currentApp === 'qr' && <QRPopup onClose={closePopup} />}
         {/* Thêm các popup khác ở đây */}
       </PopupOverlay>
